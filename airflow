@@ -1,0 +1,91 @@
+#!/bin/bash
+# Bootstrap script for running Airflow
+# If not already present, this script will create a virtualenv with Airflow
+# installed, then run Airflow with all command-line arguments passed through.
+# Users can simply run `./airflow` at the root of this repo.
+#
+# The filename this script was executed as is executed within the virtualenv.
+# By default, this launches the `airflow` script. A symlink to this script
+# named `nosetests` would execute that script within the virtualenv.
+
+sudo apt-get install python-pip python-dev build-essential libsasl2-dev
+sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev libkrb5-dev 
+
+
+sudo pip install --upgrade pip
+sudo pip install --upgrade virtualenv
+
+FILENAME=${BASH_SOURCE[0]}
+DIR=$(echo $( cd "$( dirname "${FILENAME}" )" && pwd ) | sed -E 's|(/bin)$||')
+REQUIREMENTS=${DIR}/requirements_local.txt
+AIRFLOW_DB=${DIR}/airflow.db
+# Fingerprint the requirements file and this script to test if we should
+# rebuild the virtualenv. Including this script in the fingerprint allows us
+# to force a rebuild for all users if bootstrap issues are discovered.
+# Use openssl as the command name is consistent across MacOS/Linux (instead of md5/md5sum)
+REQS_MD5=$(openssl md5 ${REQUIREMENTS} | awk '{ print $2 }')
+FILENAME_MD5=$(openssl md5 ${FILENAME} | awk '{ print $2 }')
+FINGERPRINT="${REQS_MD5}.${FILENAME_MD5}"
+VENV=${DIR}/.venv
+
+if [ "$(uname)" == "Darwin" ] || [[ "${BUILD_TAG}" == jenkins-* ]]; then
+  IS_TEST=true
+else
+  IS_TEST=false
+fi
+
+if [ "$(uname)" == "Darwin" ]; then
+  IS_MACOS=true
+else
+  IS_MACOS=false
+fi
+
+export SLUGIFY_USES_TEXT_UNIDECODE=yes
+export PYTHONPATH=${DIR}/lib
+export PATH=${DIR}/scripts:${PATH}
+export AIRFLOW_HOME=${DIR}
+
+if [ -d ${VENV} -a ! -f ${VENV}/${FINGERPRINT} ]; then
+  set -x
+  set -e
+  rm -rf ${VENV}
+fi
+
+if [ ! -d ${VENV} ]; then
+  set -x
+  set -e
+  # macOS requires a click-through agreement before installing developer
+  # tools. This click-through is typically needed after macOS and XCode
+  # upgrades. Here we explicitly test for developer tools as this has been the
+  # root cause of several end-user issues.
+  if [ "${IS_MACOS}" == true ]; then
+    echo "Testing if XCode command-line tools are installed."
+    echo "If this fails on your machine, please run: xcode-select --install"
+    xcode-select --install 2>&1 | grep 'command line tools are already installed'
+  fi
+  virtualenv --python=/usr/bin/python2.7 ${VENV}
+  source ${VENV}/bin/activate
+
+  # TODO: Remove this explicit pip version
+  pip install pip==9.0.3
+
+  pip install -r ${REQUIREMENTS}
+  if [ "${IS_TEST}" == true ]; then
+    # Remove the old sqlite database, which is okay on dev machines.
+    [[ -f ${AIRFLOW_DB} ]] && rm ${AIRFLOW_DB}
+    airflow upgradedb
+  fi
+  deactivate
+  touch ${VENV}/${FINGERPRINT}
+  if [ "${IS_TEST}" == true ]; then
+    sqlite3 ${AIRFLOW_DB} 'INSERT INTO connection (conn_id, conn_type) VALUES ("s3_default", "s3");'
+  fi
+fi
+
+source ${VENV}/bin/activate
+$(basename ${FILENAME}) "$@"
+ret=$?
+
+find ${DIR} -name '*.pyc' | xargs rm
+
+exit $ret

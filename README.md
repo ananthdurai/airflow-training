@@ -1,2 +1,2 @@
-# airflow-training
-Airflow trainig for the crunch conf
+# ETL workflow management with Apache Airflow training
+ETL workflow management with Apache Airflow training
