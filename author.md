@@ -1,0 +1,1 @@
+Ananth Packkildurai works as a Senior data engineer at Slack manage core data infrastructures like Airflow, Kafka, Flink, and Pinot. He is passionate about all things related to ethical data management.
