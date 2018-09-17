@@ -16,6 +16,10 @@ The atomic units of DAGs - while DAGs describe how to run a workflow, Operators 
 - EmailOperators
 - PythonOperators
 
+### Sensors:
+
+Sensors are the special operators, which
+
 ### Tasks:
 
 Once an operator is instantiated, it is referred to as a `task`. The instantiation defines specific values when calling the abstract operator, and the parameterized task becomes a node in a DAG.
@@ -40,4 +44,4 @@ A DAG Run is an object representing an instantiation of the DAG in time. DAG run
 | `@monthly` | Run once a month at midnight of the first day of the month      | `0 0 1 * *` |
 | `@yearly`  | Run once a year at midnight of January 1                        | `0 0 1 1 *` |
 
-
+![airflow_concepts](airflow_concepts.png)
