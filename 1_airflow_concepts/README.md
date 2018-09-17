@@ -18,7 +18,7 @@ The atomic units of DAGs - while DAGs describe how to run a workflow, Operators 
 
 ### Sensors:
 
-Sensors are the special operators, which
+Sensors are the special operators, which can pause the execution of dependent tasks until some criterion has met. In principle, Operators can perform any function that can be executed. Similarly, Sensors can check the state of any process or data structure.
 
 ### Tasks:
 
