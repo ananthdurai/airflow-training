@@ -25,7 +25,14 @@ Airflow is a platform to programmatically author, schedule and monitor workflows
 | Rerunning, backfilling the failed tasks are hard.                                                          | Airflow designed to support rerunning and backfilling the tasks.                                                                                      |
 | No task dependency management.                                                                             | Airflow Dags with Sensors and Operators support complex data pipeline dependency management.                                                          |
 
+In nutshell, Airflow support much richer functionalities like
 
+- Retries
+- Dependencies between tasks
+- SLAs/error notifications
+- Metrics about time to complete, number of failures etc
+- Logs
+- Visibility
 
 ### When not to use Airflow?
 
