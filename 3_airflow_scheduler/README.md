@@ -4,8 +4,6 @@
 
 ![airflow_architecture](airflow_architecture.png)
 
-
-
 At its core, Airflow is simply a queuing system built on top of a metadata database. The database stores the state of queued tasks and a scheduler uses these states to prioritize how other tasks are added to the queue. This functionality is orchestrated by four primary components:
 
 ### Metadata Database:
@@ -23,8 +21,6 @@ The Scheduler is a process that uses DAG definitions in conjunction with the sta
 ### Workers:
 
 These are the processes that actually execute the logic of tasks, and are determined by the Executor being used.
-
-
 
 ## How Airflow Scheduler works?
 
@@ -60,8 +56,12 @@ The scheduler updates the states of all active DagRuns ("running", "failed", "fi
 
 
 
+### Job Scheduling:
+
+The scheduler runs the job at the END each period,starting one `schedule_interval` AFTER the start date. So for a `0 19 * * *` schedule (`daily at 19:00 UTC`), The tasks for the `start date 2018-10-27` will start **justafter** `2018-10-28 18:59:59.999`
+
 ### Notes:
 
 - The first DAG Run is created based on the minimum `start_date` for the tasks in your DAG.
 - The scheduler process creates subsequent `DAG Runs`, based on your DAG’s `schedule_interval`, sequentially.
-- If you change the `start_date` of a DAG, you must change the `dag_name` as well.
+- If you change the `start_date` of a DAG, you must change the `dag_name` as well.
