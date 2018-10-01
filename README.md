@@ -6,14 +6,13 @@ Apache Airflow, help manage the complexities of their Enterprise Data Warehouse,
 
 The Introduction to the data pipeline management with Airflow training course is designed to familiarize participants with the use of Airflow schedule and maintain numerous ETL processes running on a large scale Enterprise Data Warehouse. The class cover with the hands-on exercises on,
 
-- Introduction to Airflow framework and python
-- Introduction to Airflow core concepts (DAGs, tasks, operators, sensors)
-- Airflow UI
-- Airflow scheduler
-- Airflow operators & Sensors - deep dive
-- Hooks, connections, and variables 
-- templating with Airflow
-- SLA, monitoring & alerting
+1. Introduction to Airflow framework and python
+2. Introduction to Airflow core concepts (DAGs, tasks, operators, sensors)
+3. Airflow UI
+4. Airflow Scheduler
+5. Airflow Operators & Sensors
+6. Advance Airflow Concepts (Hooks, Connections, Variables, Templates, Macros) 
+7. SLA, Monitoring & Alerting
 
 Participants should have a technology background, basic programming skills in Python and be open to sharing their thoughts and questions.
 
