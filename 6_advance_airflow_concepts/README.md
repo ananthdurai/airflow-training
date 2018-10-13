@@ -39,9 +39,9 @@ Airflow will consider any environment variable with the prefix `AIRFLOW_CONN`. (
 
 Variables are a generic way to store and retrieve arbitrary content or settings as a simple key-value store within Airflow.It is useful to set environment variable to pass across the pipeline.
 
-![04](Screenshot 2018-10-13 12.34.04.png)
 
-Apart from UI, we can set environment variable programmatically as well, 
+
+Apart from UI, we can set environment variable programmatically as well, 
 
 ```python
 from airflow.models import Variable
@@ -55,11 +55,11 @@ bar = Variable.get("bar", deserialize_json=True) # deserialize json value
 
 Airflow leverages the power of Jinja Templating, and this can be a powerful tool to use in combination with macros. Macros are a way to expose objects to your templates and live under the macros namespace in your templates.
 
-Airflow build-in macros: 
+Airflow build-in macros: 
 
 https://airflow.apache.org/code.html#macros
 
-Airflow build-in templates variables: 
+Airflow build-in templates variables: 
 
 https://airflow.apache.org/code.html#default-variables
 
@@ -70,7 +70,7 @@ Step 1: define the custom macro
 ```python
 CUSTOM_MACROS = {
   'echo': lambda id: 'echo ' + id
-} 
+}
 ```
 
 Step 2: configure the macro in the airflow dag definition
@@ -164,8 +164,6 @@ It is also possible to pull XCom directly in a template.
 ```python
 {{ task_instance.xcom_pull(task_ids='push', key='value from pusher 1') }}
 ```
-
-
 
 Further studies:
 
