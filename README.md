@@ -11,7 +11,7 @@ The Introduction to the data pipeline management with Airflow training course is
 3. Airflow UI
 4. Airflow Scheduler
 5. Airflow Operators & Sensors
-6. Advance Airflow Concepts (Hooks, Connections, Variables, Templates, Macros) 
+6. Advance Airflow Concepts (Hooks, Connections, Variables, Templates, Macros, XCom) 
 7. SLA, Monitoring & Alerting
 
 Participants should have a technology background, basic programming skills in Python and be open to sharing their thoughts and questions.
