@@ -25,11 +25,11 @@ Connections store information about different external data sources instances co
 
 ##### List all the connections:
 
-![22](Screenshot 2018-10-07 15.48.22.png)
+![22](22.png)
 
 ##### Create a new connection:
 
-![48](Screenshot 2018-10-07 15.48.48.png)
+![48](48.png)
 
 #### Airflow connections via environment variable (Recommended):
 
@@ -39,7 +39,7 @@ Airflow will consider any environment variable with the prefix `AIRFLOW_CONN`. (
 
 Variables are a generic way to store and retrieve arbitrary content or settings as a simple key-value store within Airflow.It is useful to set environment variable to pass across the pipeline.
 
-
+![04](04.png)
 
 Apart from UI, we can set environment variable programmatically as well, 
 
