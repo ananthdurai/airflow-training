@@ -47,6 +47,7 @@ class ZipOperator(BaseOperator):
             *args, **kwargs):
         self.path_to_file_to_zip = path_to_file_to_zip
         self.path_to_save_zip = path_to_save_zip
+        super(ZipOperator, self).__init__(*args, **kwargs)
 
     def execute(self, context):
         logging.info("Executing ZipOperator.execute(context)")
@@ -114,6 +115,7 @@ class UnzipOperator(BaseOperator):
             *args, **kwargs):
         self.path_to_zip_file = path_to_zip_file
         self.path_to_unzip_contents = path_to_unzip_contents
+        super(UnzipOperator, self).__init__(*args, **kwargs)
 
     def execute(self, context):
         logging.info("Executing UnzipOperator.execute(context)")
