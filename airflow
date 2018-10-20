@@ -8,9 +8,17 @@
 # By default, this launches the `airflow` script. A symlink to this script
 # named `nosetests` would execute that script within the virtualenv.
 
-sudo apt-get install python-pip python-dev build-essential libsasl2-dev
-sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev libkrb5-dev 
+if [ "$(uname)" == "Darwin" ]; then
+  IS_MACOS=true
+else
+  IS_MACOS=false
+fi
 
+# install python system dependency for centos
+if [ "${IS_MACOS}" == false ]; then
+    sudo apt-get install python-pip python-dev build-essential libsasl2-dev
+    sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev libkrb5-dev
+fi
 
 sudo pip install --upgrade pip
 sudo pip install --upgrade virtualenv
@@ -27,18 +35,7 @@ REQS_MD5=$(openssl md5 ${REQUIREMENTS} | awk '{ print $2 }')
 FILENAME_MD5=$(openssl md5 ${FILENAME} | awk '{ print $2 }')
 FINGERPRINT="${REQS_MD5}.${FILENAME_MD5}"
 VENV=${DIR}/.venv
-
-if [ "$(uname)" == "Darwin" ] || [[ "${BUILD_TAG}" == jenkins-* ]]; then
-  IS_TEST=true
-else
-  IS_TEST=false
-fi
-
-if [ "$(uname)" == "Darwin" ]; then
-  IS_MACOS=true
-else
-  IS_MACOS=false
-fi
+IS_TEST=true
 
 export SLUGIFY_USES_TEXT_UNIDECODE=yes
 export PYTHONPATH=${DIR}/lib
