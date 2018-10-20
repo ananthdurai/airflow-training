@@ -1,11 +1,10 @@
-import logging
 import os
 import tempfile
 from datetime import datetime
 
 import unittest
 from airflow.models import DAG
-from custom_operator import SqrtOperator, ZipOperator
+from dags.airflow_operators.custom_operator import SqrtOperator, ZipOperator
 
 
 # mock the custom operator
@@ -40,11 +39,9 @@ class TestZipOperator(unittest.TestCase):
         self.input_path = '/tmp/zip_test'
         self.op = tempfile.mkdtemp()
 
-
     def testZipOperator(self):
         dag = DAG(dag_id='some_dag_id', start_date=datetime(2018, 8, 24, 0))
         task = ZipOperator(dag=dag, task_id='some_task_id', path_to_file_to_zip=self.input_path,
                            path_to_save_zip=self.output_zip)
         task.execute(None)
         self.assertTrue(os.path.exists(self.output_zip))
-

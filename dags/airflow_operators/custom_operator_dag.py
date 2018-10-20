@@ -1,6 +1,6 @@
 import airflow
 from airflow import DAG
-from custom_operator import SqrtOperator, ZipOperator, UnzipOperator
+from dags.airflow_operators.custom_operator import SqrtOperator, ZipOperator, UnzipOperator
 
 args = {
     'owner': 'ananth',
