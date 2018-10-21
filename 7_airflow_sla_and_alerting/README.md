@@ -20,13 +20,13 @@ monitoring_args = {
     'sla': timedelta(hours=2),
 }
 
-def call_failue():
+def call_failue(context):
     send_slack_notification('task failed')
 
-def call_success():
+def call_success(context):
     send_slack_notification('task success')
 
-def call_sla_miss():
+def call_sla_miss(context):
     send_slack_notification('sla miss')
     send_pager_duty_notification()
 
@@ -35,9 +35,9 @@ monitor_dag = dag = DAG(
     dag_id='example_monitor_dag',
     default_args=monitoring_args,
     schedule_interval="@daily",
-    on_failure_callback=call_failue(),
-    on_success_callback=call_success(),
-    sla_miss_callback=call_failue()
+    on_failure_callback=call_failue,
+    on_success_callback=call_success,
+    sla_miss_callback=call_failue
 )
 
 ```
