@@ -1,4 +1,4 @@
-from dags.advance_airflow_concepts.slack_hook import SlackWebhookImpl
+from advance_airflow_concepts.slack_hook import SlackWebhookImpl
 
 
 class AlertManager:

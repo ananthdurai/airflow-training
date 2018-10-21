@@ -5,7 +5,7 @@ import airflow
 from airflow import DAG, AirflowException
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
-from dags.airflow_sla_and_alerting.alerts import AlertManager
+from airflow_sla_and_alerting.alerts import AlertManager
 
 args = {
     'owner': 'ananth',

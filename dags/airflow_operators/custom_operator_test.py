@@ -4,7 +4,7 @@ from datetime import datetime
 
 import unittest
 from airflow.models import DAG
-from dags.airflow_operators.custom_operator import SqrtOperator, ZipOperator
+from airflow_operators.custom_operator import SqrtOperator, ZipOperator
 
 
 # mock the custom operator
