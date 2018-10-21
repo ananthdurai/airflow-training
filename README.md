@@ -4,16 +4,31 @@ The modern Data Warehouse increase in complexity it is necessary to have a depen
 
 Apache Airflow, help manage the complexities of their Enterprise Data Warehouse, is being adopted by tech companies everywhere for its ease of management, scalability, and elegant design. Airflow is rapidly becoming the go-to technology for companies scaling out large data warehouses.
 
-The Introduction to the data pipeline management with Airflow training course is designed to familiarize participants with the use of Airflow schedule and maintain numerous ETL processes running on a large scale Enterprise Data Warehouse. The class cover with the hands-on exercises on,
+The Introduction to the data pipeline management with Airflow training course is designed to familiarize participants with the use of Airflow schedule and maintain numerous ETL processes running on a large scale Enterprise Data Warehouse. 
 
-1. Introduction to Airflow framework and python
-2. Introduction to Airflow core concepts (DAGs, tasks, operators, sensors)
-3. Airflow UI
-4. Airflow Scheduler
-5. Airflow Operators & Sensors
-6. Advance Airflow Concepts (Hooks, Connections, Variables, Templates, Macros, XCom) 
-7. SLA, Monitoring & Alerting
+Table of contents:
+
+1. [Introduction to Airflow](https://github.com/ananthdurai/airflow-training/tree/master/1_introduction_to_airflow)
+2. [Introduction to Airflow core concepts (DAGs, tasks, operators, sensors)](https://github.com/ananthdurai/airflow-training/tree/master/2_airflow_concepts)
+3. [Airflow UI](https://github.com/ananthdurai/airflow-training/tree/master/3_airflow_ui)
+4. [Airflow Scheduler](https://github.com/ananthdurai/airflow-training/tree/master/4_airflow_scheduler)
+5. [Airflow Operators & Sensors](https://github.com/ananthdurai/airflow-training/tree/master/5_airflow_operators)
+6. [Advance Airflow Concepts (Hooks, Connections, Variables, Templates, Macros, XCom) ](https://github.com/ananthdurai/airflow-training/tree/master/6_advance_airflow_concepts)
+7. [SLA, Monitoring & Alerting](https://github.com/ananthdurai/airflow-training/tree/master/7_airflow_sla_and_alerting)
+8. [Code examples](https://github.com/ananthdurai/airflow-training/tree/master/dags)
+
+## Prerequisites
 
 Participants should have a technology background, basic programming skills in Python and be open to sharing their thoughts and questions.
 
-Participants need to bring their laptops. Further information about the technical environment will be communicated after registration.
+Participants need to bring their laptops. The examples tested on mac & ununtu machines. Participants can use any hosted airflow solutions such as [Google cloud composer](https://cloud.google.com/composer/) or [Astronomer](https://www.astronomer.io/blog/airflow-at-astronomer/)
+
+## Installation
+
+1. install sqllite3
+
+2. run `./airflow scheduler` to start the airflow scheduler. The installation script will install all the dependencies 
+
+3. run in another terminal `./airflow webserver`
+
+4. on your browser visit `http://localhost:8080` to access airflow UI
