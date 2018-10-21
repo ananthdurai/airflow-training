@@ -54,14 +54,14 @@ The scheduler updates the states of all active DagRuns ("running", "failed", "fi
 
 `***Repeat Steps 1-5`***
 
-
-
 ### Job Scheduling:
 
-The scheduler runs the job at the END each period,starting one `schedule_interval` AFTER the start date. So for a `0 19 * * *` schedule (`daily at 19:00 UTC`), The tasks for the `start date 2018-10-27` will start **justafter** `2018-10-28 18:59:59.999`
+The scheduler runs the job at the END each period,starting one `schedule_interval` AFTER the start date. So for a `0 19 * * *` schedule (`daily at 19:00 UTC`), The tasks for the `start date 2018-10-27` will start **justafter** `2018-10-28 18:59:59.999`
 
 ### Notes:
 
 - The first DAG Run is created based on the minimum `start_date` for the tasks in your DAG.
 - The scheduler process creates subsequent `DAG Runs`, based on your DAG’s `schedule_interval`, sequentially.
 - If you change the `start_date` of a DAG, you must change the `dag_name` as well.
+
+*credit: * https://medium.com/@dustinstansbury/understanding-apache-airflows-key-concepts-a96efed52b1a

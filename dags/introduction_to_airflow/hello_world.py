@@ -13,7 +13,7 @@ args = {
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 1,
+    'retries': 3,
     'retry_delay': timedelta(minutes=1),
 }
 
@@ -50,7 +50,7 @@ t3.doc_md = """#Task 3
 
 t4 = BashOperator(
     task_id='task_4',
-    bash_command='echo "Hello World from Task 4"',
+    bash_command='sleep 300;echo "Hello World from Task 4"',
     dag=dag)
 
 t4.doc_md = """#Task 4
