@@ -32,3 +32,19 @@ Participants need to bring their laptops. The examples tested on mac & ununtu ma
 3. run in another terminal `./airflow webserver`
 
 4. on your browser visit `http://localhost:8080` to access airflow UI
+
+## Contributing
+Interested in contributing? Improving documentation? Adding more example? Check out [Contributing.md](https://github.com/ananthdurai/airflow-training/blob/master/contributing.md)
+
+## License
+As stated in the [License file](https://github.com/ananthdurai/airflow-training/blob/master/LICENSE) all lecture slides are provided under Creative Commons BY-NC 4.0. The exercise code is released under an MIT license.
+
+Author:
+ - [Ananth Packkildurai](https://github.com/ananthdurai/airflow-training/blob/master/author.md)
+
+## Credit
+- [Airflow documentation](https://airflow.apache.org/)
+- [@dustinstansbury](https://medium.com/@dustinstansbury/understanding-apache-airflows-key-concepts-a96efed52b1a)
+- [Airflow Plugins](https://github.com/airflow-plugins)
+- [Astronomer Airflow blog](https://www.astronomer.io/blog/topic/airflow/)
+
