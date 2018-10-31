@@ -1,6 +1,5 @@
-from datetime import timedelta
+from datetime import datetime,timedelta
 
-import airflow
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
@@ -9,16 +8,17 @@ from airflow.operators.bash_operator import BashOperator
 """
 args = {
     'owner': 'airflow',
-    'start_date': airflow.utils.dates.days_ago(2),
+    'start_date': datetime(2018, 10, 20),
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=1),
+
 }
 
 
-dag = DAG('HelloWorld', default_args=args)
+dag = DAG('HelloWorldAirflowDag', default_args=args, schedule_interval='@daily')
 
 dag.doc_md = __doc__
 
@@ -61,5 +61,6 @@ t2.set_upstream(t1)
 t3.set_upstream(t1)
 t4.set_upstream(t2)
 t4.set_upstream(t3)
+
 
 
