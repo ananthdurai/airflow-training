@@ -1,14 +1,13 @@
 # Task wait for a file and compute the word count
-from datetime import timedelta
+from datetime import timedelta, datetime
 
-import airflow
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.sensors import ExternalTaskSensor
 
 args = {
     'owner': 'airflow',
-    'start_date': airflow.utils.dates.days_ago(2),
+    'start_date': datetime(2018, 10, 20),
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
@@ -16,11 +15,11 @@ args = {
     'retry_delay': timedelta(minutes=1),
 }
 
-dag = DAG('HelloWorld', default_args=args)
+dag = DAG('HelloWorldSensors', default_args=args, schedule_interval='@daily')
 
 wf_task_4 = ExternalTaskSensor(
     external_task_id='task_4',
-    external_dag_id='HelloWorld',
+    external_dag_id='HelloWorldAirflowDag',
     task_id='wf_task_4',
     dag=dag,
 )
